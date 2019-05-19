@@ -1,9 +1,5 @@
 package hash
 
-import (
-	"fmt"
-)
-
 /*
  * RS  从Robert Sedgwicks的 Algorithms in C一书中得到了。
  * 我(原文作者)已经添加了一些简单的优化的算法，以加快其散列过程。
@@ -16,7 +12,7 @@ func RSHash(str string) uint64 {
 		hash = hash*uint64(a) + uint64(str[i])
 		a = a * b
 	}
-	fmt.Printf("RSHash %v\n", hash)
+	//fmt.Printf("RSHash %v\n", hash)
 	return hash
 }
 
@@ -29,7 +25,7 @@ func JSHash(str string) uint64 {
 	for i := 0; i < len(str); i++ {
 		hash ^= ((hash << 5) + uint64(str[i]) + (hash >> 2))
 	}
-	fmt.Printf("JSHash %v\n", hash)
+	//fmt.Printf("JSHash %v\n", hash)
 	return hash
 }
 
@@ -48,7 +44,7 @@ func PJWHash(str string) uint64 {
 			hash = ((hash ^ (test >> ThreeQuarters)) & (^HighBits))
 		}
 	}
-	fmt.Printf("PJWHash %v\n", hash)
+	//fmt.Printf("PJWHash %v\n", hash)
 	return hash
 }
 
@@ -63,7 +59,7 @@ func BKDRHash(str string) uint64 {
 	for i := 0; i < len(str); i++ {
 		hash = (hash * seed) + uint64(str[i])
 	}
-	fmt.Printf("BKDRHash %v\n", hash)
+	//fmt.Printf("BKDRHash %v\n", hash)
 	return hash
 }
 
@@ -74,7 +70,7 @@ func SDBMHash(str string) uint64 {
 	for i := 0; i < len(str); i++ {
 		hash = uint64(str[i]) + (hash << 6) + (hash << 16) - hash
 	}
-	fmt.Printf("SDBMHash %v\n", hash)
+	//fmt.Printf("SDBMHash %v\n", hash)
 	return hash
 }
 
@@ -85,7 +81,7 @@ func DJBHash(str string) uint64 {
 	for i := 0; i < len(str); i++ {
 		hash = ((hash << 5) + hash) + uint64(str[i])
 	}
-	fmt.Printf("DJBHash %v\n", hash)
+	//fmt.Printf("DJBHash %v\n", hash)
 	return hash
 }
 
@@ -96,7 +92,7 @@ func DEKHash(str string) uint64 {
 	for i := 0; i < len(str); i++ {
 		hash = ((hash << 5) ^ (hash >> 27)) ^ uint64(str[i])
 	}
-	fmt.Printf("DEKHash %v\n", hash)
+	//fmt.Printf("DEKHash %v\n", hash)
 	return hash
 }
 
@@ -113,6 +109,6 @@ func APHash(str string) uint64 {
 			hash ^= (^((hash << 11) + uint64(str[i]) ^ (hash >> 5)))
 		}
 	}
-	fmt.Printf("APHash %v\n", hash)
+	//fmt.Printf("APHash %v\n", hash)
 	return hash
 }
